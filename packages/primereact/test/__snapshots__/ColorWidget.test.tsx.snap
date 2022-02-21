@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColorWidget simple 1`] = `
+<div>
+  <label
+    className="block mb-1 text-color-danger"
+    htmlFor="_id"
+  >
+    Some simple label
+    *
+  </label>
+  <div
+    className="p-colorpicker p-component p-colorpicker-overlay"
+    id={null}
+    style={null}
+  >
+    <input
+      className="p-colorpicker-preview p-inputtext"
+      disabled={false}
+      id="_id"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      readOnly={true}
+      required={true}
+      tabIndex={null}
+      type="text"
+    />
+  </div>
+</div>
+`;

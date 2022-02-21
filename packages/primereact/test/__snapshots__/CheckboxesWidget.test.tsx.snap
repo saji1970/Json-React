@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxesWidget inline 1`] = `
+<div>
+  <label
+    className="mb-1"
+    htmlFor="_id"
+  >
+    Some simple label
+  </label>
+  <div
+    className="flex gap-3"
+  >
+    <div
+      className="inline-flex align-items-start gap-2"
+    >
+      <div
+        className="p-checkbox p-component p-checkbox-disabled"
+        id={null}
+        onClick={[Function]}
+        onContextMenu={null}
+        onMouseDown={null}
+        style={null}
+      >
+        <div
+          className="p-hidden-accessible"
+        >
+          <input
+            aria-labelledby={null}
+            defaultChecked={false}
+            disabled={true}
+            id="_id_0"
+            name={null}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            required={true}
+            tabIndex={null}
+            type="checkbox"
+          />
+        </div>
+        <div
+          aria-checked={false}
+          className="p-checkbox-box p-disabled"
+          role="checkbox"
+        />
+      </div>
+      <label
+        htmlFor="_id_0"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CheckboxesWidget simple 1`] = `
+<div>
+  <label
+    className="mb-1"
+    htmlFor="_id"
+  >
+    Some simple label
+  </label>
+  <div
+    className="flex gap-2"
+  >
+    <div
+      className="flex align-items-start gap-2"
+    >
+      <div
+        className="p-checkbox p-component p-checkbox-disabled"
+        id={null}
+        onClick={[Function]}
+        onContextMenu={null}
+        onMouseDown={null}
+        style={null}
+      >
+        <div
+          className="p-hidden-accessible"
+        >
+          <input
+            aria-labelledby={null}
+            defaultChecked={false}
+            disabled={true}
+            id="_id_0"
+            name={null}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            required={true}
+            tabIndex={null}
+            type="checkbox"
+          />
+        </div>
+        <div
+          aria-checked={false}
+          className="p-checkbox-box p-disabled"
+          role="checkbox"
+        />
+      </div>
+      <label
+        htmlFor="_id_0"
+      />
+    </div>
+  </div>
+</div>
+`;

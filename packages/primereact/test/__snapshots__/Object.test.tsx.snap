@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`object fields object 1`] = `
+<form
+  className="rjsf"
+  noValidate={false}
+  onSubmit={[Function]}
+>
+  <div>
+    <div
+      className="flex flex-column gap-2"
+    >
+      <div>
+        <div>
+          <div>
+            <label
+              className="block mb-1"
+              htmlFor="root_a"
+            >
+              a
+            </label>
+            <input
+              autoFocus={false}
+              className="p-inputtext p-component w-full"
+              disabled={false}
+              id="root_a"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+              onKeyPress={[Function]}
+              placeholder=""
+              readOnly={false}
+              required={false}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div>
+            <label
+              className="block mb-1"
+              htmlFor="root_b"
+            >
+              b
+            </label>
+            <input
+              autoFocus={false}
+              className="p-inputtext p-component w-full"
+              disabled={false}
+              id="root_b"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onInput={[Function]}
+              onKeyPress={[Function]}
+              placeholder=""
+              readOnly={false}
+              required={false}
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    className="p-button p-component mt-3"
+    disabled={false}
+    type="submit"
+  >
+    <span
+      className="p-button-label p-c"
+    >
+      Submit
+    </span>
+  </button>
+</form>
+`;
