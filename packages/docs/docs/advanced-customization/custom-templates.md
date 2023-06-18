@@ -369,11 +369,12 @@ import { BaseInputTemplateProps } from '@rjsf/utils';
 import { getDefaultRegistry } from '@rjsf/core';
 import { Templates } from '@rjsf/mui';
 
-const { templates: { BaseInputTemplate } } = getDefaultRegistry();  // To get templates from core
+const {
+  templates: { BaseInputTemplate },
+} = getDefaultRegistry(); // To get templates from core
 // const { BaseInputTemplate } = Templates; // To get templates from a theme do this
 
-function MyBaseInputTemplate(props: BaseInputTemplateProps)
-{
+function MyBaseInputTemplate(props: BaseInputTemplateProps) {
   const customProps = {};
   // get your custom props from where you need to
   return <BaseInputTemplate {...props} {...customProps} />;

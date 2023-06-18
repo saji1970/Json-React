@@ -21,6 +21,9 @@ should change the heading of the (upcoming) version to include a major version b
 
 - Explicitly cache schemas by their hash when checking data is valid to avoid multiple compilations for schemas without IDs leading to poor performance [#3721](https://github.com/rjsf-team/react-jsonschema-form/pull/3721)
 
+# 5.9.0
+- Add mantine ui
+
 # 5.8.1
 
 ## Dev / docs / playground
