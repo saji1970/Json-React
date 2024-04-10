@@ -27,6 +27,7 @@ import {
   sanitizeDataForNewSchema,
   toIdSchema,
   toPathSchema,
+  omitExtraData,
 } from './schema';
 
 /** The `SchemaUtils` class provides a wrapper around the publicly exported APIs in the `utils/schema` directory such
@@ -274,6 +275,19 @@ class SchemaUtils<T = any, S extends StrictRJSFSchema = RJSFSchema, F extends Fo
    */
   toPathSchema(schema: S, name?: string, formData?: T): PathSchema<T> {
     return toPathSchema<T, S, F>(this.validator, schema, name, this.rootSchema, formData);
+  }
+
+  /**
+   * The function takes a `schema` and `formData` and returns a copy of the formData with any fields not defined in the schema removed.
+   * This is useful for ensuring that only data that is relevant to the schema is preserved. Objects with `additionalProperties`
+   * keyword set to `true` will not have their extra fields removed.
+   *
+   * @param schema - The schema to use for filtering the `formData`
+   * @param [formData] - The formData to filter
+   * @returns The new form data, with any fields not defined in the schema removed
+   */
+  omitExtraData(schema: S, formData?: T): T | undefined {
+    return omitExtraData<T, S, F>(this.validator, schema, this.rootSchema, formData);
   }
 }
 
