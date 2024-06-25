@@ -1,0 +1,20 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "include": ["./"],
+  "compilerOptions": {
+    "rootDir": "./",
+    "baseUrl": "../",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    // https://github.com/carbon-design-system/carbon/tree/main/packages/react#typescript
+    "skipLibCheck": true
+  },
+  "references": [
+    {
+      "path": "../src"
+    },
+    {
+      "path": "../../snapshot-tests"
+    }
+  ]
+}
