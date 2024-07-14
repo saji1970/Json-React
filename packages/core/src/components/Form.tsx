@@ -421,7 +421,17 @@ export default class Form<
     if (mustValidate) {
       const schemaValidation = this.validate(formData, schema, schemaUtils, _retrievedSchema);
       errors = schemaValidation.errors;
-      errorSchema = schemaValidation.errorSchema;
+      // If the schema has changed, we do not merge state.errorSchema.
+      // Else in the case where it hasn't changed, we merge 'state.errorSchema' with 'schemaValidation.errorSchema.' This done to display the raised field error.
+      if (isSchemaChanged) {
+        errorSchema = schemaValidation.errorSchema;
+      } else {
+        errorSchema = mergeObjects(
+          this.state?.errorSchema,
+          schemaValidation.errorSchema,
+          'preventDuplicates'
+        ) as ErrorSchema<T>;
+      }
       schemaValidationErrors = errors;
       schemaValidationErrorSchema = errorSchema;
     } else {
@@ -575,11 +585,34 @@ export default class Form<
   omitExtraData = (formData?: T): T | undefined => {
     const { schema, schemaUtils } = this.state;
     const retrievedSchema = schemaUtils.retrieveSchema(schema, formData);
+
     const pathSchema = schemaUtils.toPathSchema(retrievedSchema, '', formData);
     const fieldNames = this.getFieldNames(pathSchema, formData);
     const newFormData = this.getUsedFormData(formData, fieldNames);
     return newFormData;
   };
+
+  // Filtering errors based on your retrieved schema to only show errors for properties in the selected branch.
+  private filterErrorsBasedOnSchema(schemaErrors: ErrorSchema<T>, resolvedSchema?: S, formData?: any): ErrorSchema<T> {
+    const { retrievedSchema, schemaUtils } = this.state;
+    const _retrievedSchema = resolvedSchema ?? retrievedSchema;
+    const pathSchema = schemaUtils.toPathSchema(_retrievedSchema, '', formData);
+    const fieldNames = this.getFieldNames(pathSchema, formData);
+    const filteredErrors: ErrorSchema<T> = _pick(schemaErrors, fieldNames as unknown as string[]);
+    // Removing undefined and empty errors.
+    const filterUndefinedErrors = (errors: any): ErrorSchema<T> => {
+      Object.keys(errors).forEach((key: string) => {
+        const errorKey = key as keyof typeof errors;
+        if (errors[errorKey] === undefined) {
+          delete errors[errorKey];
+        } else if (typeof errors[errorKey] === 'object' && !Array.isArray(errors[errorKey].__errors)) {
+          filterUndefinedErrors(errors[errorKey]);
+        }
+      });
+      return errors;
+    };
+    return filterUndefinedErrors(filteredErrors);
+  }
 
   /** Function to handle changes made to a field in the `Form`. This handler receives an entirely new copy of the
    * `formData` along with a new `ErrorSchema`. It will first update the `formData` with any missing default fields and
@@ -623,6 +656,11 @@ export default class Form<
         const merged = validationDataMerge(schemaValidation, extraErrors);
         errorSchema = merged.errorSchema;
         errors = merged.errors;
+      }
+      // Merging 'newErrorSchema' into 'errorSchema' to display the custom raised errors.
+      if (newErrorSchema) {
+        const filteredErrors = this.filterErrorsBasedOnSchema(newErrorSchema, retrievedSchema, newFormData);
+        errorSchema = mergeObjects(errorSchema, filteredErrors, 'preventDuplicates') as ErrorSchema<T>;
       }
       state = {
         formData: newFormData,
